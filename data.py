@@ -9,11 +9,11 @@ producer = KafkaProducer(
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-gudang_ids = ['G1', 'G2', 'G3']
+gudang_id = ['G1', 'G2', 'G3']
 
 def kirim_suhu():
     while True:
-        for gid in gudang_ids:
+        for gid in gudang_id:
             suhu = random.randint(70, 90)
             data = {"gudang_id": gid, "suhu": suhu}
             producer.send('sensor-suhu-gudang', value=data)
@@ -22,7 +22,7 @@ def kirim_suhu():
 
 def kirim_kelembaban():
     while True:
-        for gid in gudang_ids:
+        for gid in gudang_id:
             kelembaban = random.randint(60, 80)
             data = {"gudang_id": gid, "kelembaban": kelembaban}
             producer.send('sensor-kelembapan-gudang', value=data)
